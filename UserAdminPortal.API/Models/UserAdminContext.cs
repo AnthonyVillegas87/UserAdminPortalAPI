@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace StudentAdminPortal.API.Models
+namespace UserAdminPortal.API.Models
 {
     public class UserAdminContext : DbContext 
     {
@@ -11,7 +11,13 @@ namespace StudentAdminPortal.API.Models
 
         }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().ToTable("users");
+        }
+                        
 
     }
 }

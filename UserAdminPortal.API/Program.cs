@@ -1,14 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using StudentAdminPortal.API.Models;
+using UserAdminPortal.API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<UserAdminContext>(options => options.UseSqlServer(Configuration.));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<UserAdminContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("UserAdminPortalDb")));
 
 var app = builder.Build();
 
